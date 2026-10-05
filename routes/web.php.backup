@@ -1,0 +1,20 @@
+
+<?php
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/auth/login', function () {
+    return view('auth.login');
+});
+
+Route::post('/auth/login', function (Request $request) {
+    $request->validate([
+        'email' => ['required', 'email'],
+        'password' => ['required', 'string'],
+    ]);
+
+    return back()->withErrors([
+        'email' => 'Login authentication has not been configured yet.',
+    ]);
+});
